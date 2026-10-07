@@ -5,7 +5,7 @@ This project turns raw, disconnected customer feedback from Excel logs into a dy
 
 The goal of this analysis is to identify product quality flaws, evaluate internal investigation performance, analyze customer sentiment, and highlight areas where operational updates can improve brand loyalty.
 
-
+![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
 ---
 
 ## 📋 Project Background
