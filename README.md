@@ -1,11 +1,10 @@
 # 📊 Customer Complaints Data Analysis Dashboard
 
 ## 🚀 Introduction
-Welcome to the **Customer Complaints Analysis** project. This project turns raw, disconnected customer feedback from Excel logs into a dynamic, highly interactive Power BI business intelligence dashboard. 
+This project turns raw, disconnected customer feedback from Excel logs into a dynamic, highly interactive Power BI business intelligence dashboard. 
 
 The goal of this analysis is to identify product quality flaws, evaluate internal investigation performance, analyze customer sentiment, and highlight areas where operational updates can improve brand loyalty.
 
-All visual assets, model structures, and data flows are documented directly below.
 
 ---
 
@@ -91,28 +90,101 @@ All business logic functions are neatly contained within a dedicated **`Measure 
 | **Severity** | `SELECTEDVALUE(Complaints[Severity Level])` | Dynamically captures and returns the current user-selected context for filter flags. |
 
 ---
+## 🧠 Text Analytics
 
-## 📊 Dashboard Visual Insights
+A key part of this project was combining **structured complaint information with unstructured customer feedback**.
 
-![Customer Complaints Dashboard Preview](dashboard_screenshot.png)
+Power BI's sentiment analysis capabilities were used to analyse complaint descriptions and identify sentiment patterns.
 
-### Executive Summary KPI Overview
-* **Total Intake Volume:** **300** total customer complaints were evaluated across the operational window.
-* **Active Operational Backlog:** **86** complaints are currently flagged with an active `Open` status, representing a key area for resource allocation.
-* **Turnaround Efficiency:** The organization maintains a solid baseline, taking an average of **8 days** to officially resolve a customer issue.
-* **Quality Control Baseline:** The average shelf life for cataloged products sits at **38 days**.
+Key phrases were also extracted from complaint text and incorporated into a **word cloud** to surface recurring themes.
 
-### Core Analytical Deep Dives
-1. **Product Performance Risks:** The **Hummus & Veggies Pack** sits as the most volatile item, accounting for **36** independent complaints. It is followed closely by the **Vegan Wrap** (**29**) and **Greek Salad** (**28**).
-2. **Severity Log Distribution:** Issue categorization shows that **High** priority tickets form the largest single block at **35%** (**104** complaints). **Critical** issues require immediate attention, accounting for **19%** of absolute logs.
-3. **Sentiment & Text Mining:** By applying text processing models, the canvas dynamically visualizes sentiment mapping. **Negative sentiment** captures the heavy majority at **48%** (**143** records). Key phrase extraction highlights repeating operational failure points such as `"vacuum seal"`, `"product freshness"`, and `"spoilage"`.
-4. **Dissatisfaction Drivers:** A combination chart breaks down complaint types cross-referenced with customer ratings. **Allergic reactions** and **Foreign objects in food** predictably map to the highest concentration of `Very Dissatisfied` and `Dissatisfied` responses.
+The analytical workflow was:
+
+```text
+Complaint Description
+        ↓
+Sentiment Analysis
+        ↓
+Key Phrase Extraction
+        ↓
+Sentiment Visual + Word Cloud
+        ↓
+Customer Experience Insights
+```
+
+This provides an additional layer of analysis beyond simply counting complaints.
+
+---
+## 📊 Key Insights
+
+### Complaint Volume
+
+The dataset contains **300 customer complaints**, providing the basis for the dashboard's product, operational, satisfaction, and sentiment analysis.
+
+### Open Complaint Backlog
+
+**86 complaints** are currently marked as `Open`, highlighting the volume of cases that remain unresolved within the dataset.
+
+### Resolution Time
+
+The average resolution time is **8 days** for complaints with a recorded resolution date.
+
+### Product Complaint Concentration
+
+The products with the highest complaint volumes include:
+
+- **Hummus & Veggies Pack** — 36 complaints
+- **Vegan Wrap** — 29 complaints
+- **Greek Salad** — 28 complaints
+
+These products provide useful starting points for deeper quality and customer-experience investigation.
+
+### Severity
+
+**High severity** complaints account for **104 cases**, approximately **35%** of the dataset.
+
+**Critical** complaints account for approximately **19%** of the total complaint volume.
+
+### Customer Sentiment
+
+Negative sentiment represents the largest sentiment category, with **143 complaints**, approximately **48%** of the dataset.
+
+### Recurring Complaint Themes
+
+Key phrase analysis highlights recurring terms such as:
+
+- `vacuum seal`
+- `product freshness`
+- `spoilage`
+
+These recurring themes can be used as signals for further investigation into packaging, freshness, and product-quality processes.
+
+### Dissatisfaction Drivers
+
+Complaint categories including **allergic reactions** and **foreign objects in food** show high concentrations of dissatisfied customer responses.
+
+These categories can be examined further alongside severity, investigation status, product, and supplier information.
 
 ---
 
-## 💡 Key Conclusions & Action Items
-* **Fix the Packaging Seals:** Key phrase analysis heavily indicates that packaging failures are creating systemic food spoilage issues early. Engineering updates should prioritize the sealing mechanics of the wrap and sandwich lines.
-* **Triage the Backlog:** With **86 open cases**, operations should implement automated routing rules targeting the **Critical / High** severity issues impacting high-volume products like the Hummus Pack.
-* **Supplier Quality Check:** Allergic reactions and foreign object complaints represent severe regulatory liabilities. Immediate audits are recommended for raw ingredient suppliers, specifically targeting leaf greens and proteins.
+## 💡 Recommendations
 
+The dashboard findings suggest several areas for further investigation:
 
+### 1. Investigate Packaging-Related Complaints
+
+Recurring phrases around vacuum sealing, freshness, and spoilage suggest that packaging-related complaints deserve additional quality-control investigation.
+
+### 2. Review the Open Complaint Backlog
+
+The **86 open complaints** could be further prioritised using severity, complaint age, product, and sentiment.
+
+### 3. Investigate High-Risk Complaint Categories
+
+Allergic reactions and foreign-object complaints should be reviewed alongside severity and investigation status because of their potential quality and food-safety implications.
+
+### 4. Monitor High-Volume Products
+
+Products with consistently high complaint volumes can be monitored over time to determine whether the pattern is isolated or recurring.
+
+---
