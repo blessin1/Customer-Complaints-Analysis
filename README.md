@@ -34,7 +34,7 @@ To build the end-to-end business intelligence pipeline, I used the following too
 To maximize performance and query efficiency, I transformed the flat Excel table into an optimized **Star Schema** data model. 
 
 ### Data Model Layout
-![Optimized Star Schema Model](assets/data_model_screenshot.png)
+![Optimized Star Schema Model](assets/data_model_screenshot.PNG)
 
 ### Schema Relationships
 * `Complaints` (Fact Table) ─── `1:*` ─── `DateTable` (Dimension Table)
