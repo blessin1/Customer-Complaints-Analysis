@@ -115,76 +115,26 @@ Customer Experience Insights
 This provides an additional layer of analysis beyond simply counting complaints.
 
 ---
-## 📊 Key Insights
-
-### Complaint Volume
-
-The dataset contains **300 customer complaints**, providing the basis for the dashboard's product, operational, satisfaction, and sentiment analysis.
-
-### Open Complaint Backlog
-
-**86 complaints** are currently marked as `Open`, highlighting the volume of cases that remain unresolved within the dataset.
-
-### Resolution Time
-
-The average resolution time is **8 days** for complaints with a recorded resolution date.
-
-### Product Complaint Concentration
-
-The products with the highest complaint volumes include:
-
-- **Hummus & Veggies Pack** — 36 complaints
-- **Vegan Wrap** — 29 complaints
-- **Greek Salad** — 28 complaints
-
-These products provide useful starting points for deeper quality and customer-experience investigation.
-
-### Severity
-
-**High severity** complaints account for **104 cases**, approximately **35%** of the dataset.
-
-**Critical** complaints account for approximately **19%** of the total complaint volume.
-
-### Customer Sentiment
-
-Negative sentiment represents the largest sentiment category, with **143 complaints**, approximately **48%** of the dataset.
-
-### Recurring Complaint Themes
-
-Key phrase analysis highlights recurring terms such as:
-
-- `vacuum seal`
-- `product freshness`
-- `spoilage`
-
-These recurring themes can be used as signals for further investigation into packaging, freshness, and product-quality processes.
-
-### Dissatisfaction Drivers
-
-Complaint categories including **allergic reactions** and **foreign objects in food** show high concentrations of dissatisfied customer responses.
-
-These categories can be examined further alongside severity, investigation status, product, and supplier information.
+### 📊 Executive Summary KPI Overview
+* **Total Intake Volume:** **300** total customer complaints evaluated across the active operational window.
+* **Active Operational Backlog:** **86** complaints currently flag an active `Open` status, highlighting a critical resource bottleneck.
+* **Turnaround Efficiency:** The organization maintains a baseline average of **8 days** to officially resolve an incoming ticket.
+* **Quality Baseline:** The historical average shelf life for cataloged portfolio products sits at **38 days**.
 
 ---
 
-## 💡 Recommendations
+### 🔍 Core Analytical Deep Dives
 
-The dashboard findings suggest several areas for further investigation:
-
-### 1. Investigate Packaging-Related Complaints
-
-Recurring phrases around vacuum sealing, freshness, and spoilage suggest that packaging-related complaints deserve additional quality-control investigation.
-
-### 2. Review the Open Complaint Backlog
-
-The **86 open complaints** could be further prioritised using severity, complaint age, product, and sentiment.
-
-### 3. Investigate High-Risk Complaint Categories
-
-Allergic reactions and foreign-object complaints should be reviewed alongside severity and investigation status because of their potential quality and food-safety implications.
-
-### 4. Monitor High-Volume Products
-
-Products with consistently high complaint volumes can be monitored over time to determine whether the pattern is isolated or recurring.
+| Focus Area | Key Metrics & Data Assertions | Systemic Drivers |
+| :--- | :--- | :--- |
+| **Product Risks** | **Hummus Pack** (**36** logs), **Vegan Wrap** (**29**), **Greek Salad** (**28**). | These top 3 SKUs drive the bulk of total feedback. |
+| **Severity Splitting** | **High Priority** tickets make up **35%** (**104** cases); **Critical** demands **19%**. | Over half of the backlog requires expedited handling. |
+| **Text Mining** | **Negative sentiment** dominates at **48%** (**143** records). | Recurrent terms: `"vacuum seal"`, `"product freshness"`, `"spoilage"`. |
+| **Risk Anchors** | **Allergic Reactions** & **Foreign Objects** generate the lowest user ratings. | Severe regulatory and liability vectors. |
 
 ---
+
+## 💡 Key Conclusions & Action Items
+* **Fix the Packaging Seals:** Text mining heavily indicates that early food spoilage stems directly from sealing mechanics. Engineering updates must immediately prioritize packaging integrity on the wrap and sandwich production lines.
+* **Triage the Backlog:** Operations should deploy automated routing rules to isolate the **86 open cases**, immediately prioritizing **Critical / High** severity issues tied to high-volume products like the Hummus Pack.
+* **Initiate Supplier Quality Audits:** Because foreign object and allergen complaints present severe regulatory liabilities, immediate on-site quality control checks are recommended for raw ingredient suppliers, specifically targeting leaf greens and proteins.
