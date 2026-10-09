@@ -1,15 +1,13 @@
 # 📊 Customer Complaints Data Analysis Dashboard
 
 ## 🚀 Introduction
-This project turns raw, disconnected customer feedback from Excel logs into a dynamic, highly interactive Power BI business intelligence dashboard. 
-
-The goal of this analysis is to identify product quality flaws, evaluate internal investigation performance, analyze customer sentiment, and highlight areas where operational updates can improve brand loyalty.
+This project turns raw customer complaint logs from Excel/CSV into a single-page, interactive Power BI business intelligence dashboard for a fresh-food business (salads, wraps, sandwiches and ready-to-eat packs). It is built to answer one question: **where is food quality failing, how badly does it hurt customer satisfaction, and what should be fixed first?**
 
 ![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
 ---
 
 ## 📋 Project Background
-In consumer goods and retail, quick resolution times and quality control are critical. This dashboard was developed to solve a core business problem: **How do we efficiently track, triage, and solve growing customer issues?**
+For a fresh-food producer, quick resolution times and quality control are critical. This dashboard was developed to solve a core business problem: **How do we efficiently track, triage, and solve growing customer issues?**
 
 By building a centralized semantic model and interactive dashboard, this project answers five critical business questions:
 1. **Which specific products** trigger the highest volume of consumer complaints?
@@ -20,13 +18,14 @@ By building a centralized semantic model and interactive dashboard, this project
 
 ---
 
+
 ## 🛠️ Tools & Tech Stack
-To build the end-to-end business intelligence pipeline, I used the following tools:
-* **Excel:** The foundational source data container storing raw complaint entries, dates, remarks, and satisfaction ratings.
+
+* **Excel:** The source data container storing raw complaint entries, dates, remarks, and satisfaction ratings.
 * **Power Query:** Utilized to clean text columns, manage data types, and filter out null values.
-* **Power BI Desktop & DAX:** Used to engineer an optimized star-schema data model and construct custom advanced business logic metrics.
-* **AI Cognitive Services (Sentiment Analysis):** Leveraged Power BI's native AI insights to extract core sentiment metrics and key phrases from text logs.
-* **Word Cloud Custom Visual:** Integrated to visually highlight high-frequency complaint phrases directly on the canvas.
+* **Power BI Desktop & DAX:** Used to engineer an optimized star-schema data model and construct custom business logic metrics.
+* **AI Cognitive Services (Sentiment Analysis):** Leveraged Power BI's native AI insights to perform sentiment analysis and key-phrase extraction on `Issue Description`
+* **Word Cloud Custom Visual:** Integrated to visually highlight recurring complaint phrases on the canvas.
 
 ---
 
@@ -85,6 +84,8 @@ All business logic functions are neatly contained within a dedicated **`Measure 
 | **Open Complaints** | `CALCULATE(COUNTROWS('Complaints'), 'Complaints'[Investigation Status] = "Open")` | Tracks active, unresolved tickets requiring immediate attention. |
 | **Complaints %** | `VAR _Complaints = CALCULATE([Total Complaints], ALL(Complaints)) RETURN DIVIDE([Total Complaints], _Complaints)` | Computes percentage distribution across dynamically filtered categories. |
 | **Avg Satisfaction Score** | `AVERAGE('Complaints'[SatisfactionScore])` | Evaluates overall post-resolution customer experience (Scale 1-5). |
+| **% Dissatisfied** | `DIVIDE(CALCULATE(COUNTROWS(Complaints), Complaints[Satisfaction Rating] IN {"Dissatisfied","Very Dissatisfied"}), COUNTROWS(Complaints))` | Share of customers rating Dissatisfied or Very Dissatisfied. |
+| **Days Open** | `DATEDIFF(MIN(Complaints[Complaint Date]), CALCULATE(MAX(Complaints[Complaint Date]), ALL(Complaints)), DAY)` | Age of a complaint, measured against the latest complaint date in the data. |
 | **Avg Days to Resolve** | `AVERAGEX(FILTER('Complaints', NOT ISBLANK('Complaints'[Resolution Date])), DATEDIFF('Complaints'[Complaint Date], 'Complaints'[Resolution Date], DAY))` | Tracks operational speed by calculating turnaround time for closed tickets. |
 | **Avg Shelf Life (Days)** | `AVERAGEX(SUMMARIZE('Complaints', 'Complaints'[Product Name], "ShelfLife", AVERAGEX(FILTER('Complaints', 'Complaints'[Manufacturing Date] <> BLANK() && 'Complaints'[Expiration Date] <> BLANK()), DATEDIFF('Complaints'[Manufacturing Date], 'Complaints'[Expiration Date], DAY))), [ShelfLife])` | Advanced metric analyzing the lifecycle gap between manufacturing and expiration dates per item. |
 | **Severity** | `SELECTEDVALUE(Complaints[Severity Level])` | Dynamically captures and returns the current user-selected context for filter flags. |
@@ -115,11 +116,13 @@ Customer Experience Insights
 This provides an additional layer of analysis beyond simply counting complaints.
 
 ---
+
 ### 📊 Executive Summary KPI Overview
-* **Total Intake Volume:** **300** total customer complaints evaluated across the active operational window.
-* **Active Operational Backlog:** **86** complaints currently flag an active `Open` status, highlighting a critical resource bottleneck.
-* **Turnaround Efficiency:** The organization maintains a baseline average of **8 days** to officially resolve an incoming ticket.
-* **Quality Baseline:** The historical average shelf life for cataloged portfolio products sits at **38 days**.
+* **Total Intake Volume:** **300** customer complaints logged across the operational window.
+* **Active Operational Backlog:** **86** complaints (**29%**) currently hold an `Open` status. **49** of these are **Critical or High** severity, including **18 Critical**, so they need immediate attention.
+* **Turnaround Efficiency:** The organization maintains a baseline average of **8 days** to resolve a ticket.
+* **Customer Satisfaction:** The average rating is **2.58 / 5**, and **53%** of customers (**158**) are Dissatisfied or Very Dissatisfied.
+* **Quality Baseline:** The average shelf life of cataloged products sits at **38 days**.
 
 ---
 
@@ -127,14 +130,32 @@ This provides an additional layer of analysis beyond simply counting complaints.
 
 | Focus Area | Key Metrics & Data Assertions | Systemic Drivers |
 | :--- | :--- | :--- |
-| **Product Risks** | **Hummus Pack** (**36** logs), **Vegan Wrap** (**29**), **Greek Salad** (**28**). | These top 3 SKUs drive the bulk of total feedback. |
-| **Severity Splitting** | **High Priority** tickets make up **35%** (**104** cases); **Critical** demands **19%**. | Over half of the backlog requires expedited handling. |
-| **Text Mining** | **Negative sentiment** dominates at **48%** (**143** records). | Recurrent terms: `"vacuum seal"`, `"product freshness"`, `"spoilage"`. |
-| **Risk Anchors** | **Allergic Reactions** & **Foreign Objects** generate the lowest user ratings. | Severe regulatory and liability vectors. |
+| **Product&nbsp;Risks** | **Hummus Pack** (**36** logs), **Vegan Wrap** (**29**), **Greek Salad** (**28**, tied with Turkey Sandwich). | Complaints are spread across 12 products. The top 3 account for 93 of 300 (**31%**), so this is a portfolio-wide quality issue, not a few problem SKUs. |
+| **Severity&nbsp;Split** | **High** **35%** (**104**); **Critical** **19%** (**56**). | Critical and High are **53%** of all complaints, and **57%** of the open backlog (49 of 86). |
+| **Text&nbsp;Mining** | **Negative sentiment** leads at **48%** (**143** records). | Seal and freshness themes recur (`"vacuum seal"`, `"seal failure"`, `"early spoilage"`). |
+| **Risk&nbsp;Anchors** | **Spoiled** (1.79), **Foreign Object** (1.90), **Moldy** (1.94) and **Allergic Reaction** (2.00) generate the lowest ratings. |  Food-safety and regulatory exposure. Foreign objects trace mainly to **QC inspection** (18 of 40) and **equipment failure** (12). Allergens trace to **cross-contamination** (8 of 21) and **supplier miscommunication** (8). |
+
+---
+### Satisfaction depends on what went wrong, not which product
+
+| Complaint type | Avg rating (1–5) | % Dissatisfied |
+| :--- | :---: | :---: |
+| Spoiled product | **1.79** | 83% |
+| Foreign object in food | 1.90 | 70% |
+| Moldy product | 1.94 | 75% |
+| Allergic reaction | 2.00 | 76% |
+| … | | |
+| Bad taste | 3.41 | 31% |
+| Wrong item received | 3.41 | 28% |
+| Underweight portion | 3.52 | 22% |
+
+Severity tells the same story. Critical and High complaints average **1.89** and **1.96**, and Medium and Low average 3.24 and 3.54. Product averages only range from 2.1 to 2.9, with **BBQ Chicken Wrap** (2.10) and **Quinoa Bowl** (2.22) lowest.
 
 ---
 
 ## 💡 Key Conclusions & Action Items
-* **Fix the Packaging Seals:** Text mining heavily indicates that early food spoilage stems directly from sealing mechanics. Engineering updates must immediately prioritize packaging integrity on the wrap and sandwich production lines.
-* **Triage the Backlog:** Operations should deploy automated routing rules to isolate the **86 open cases**, immediately prioritizing **Critical / High** severity issues tied to high-volume products like the Hummus Pack.
-* **Initiate Supplier Quality Audits:** Because foreign object and allergen complaints present severe regulatory liabilities, immediate on-site quality control checks are recommended for raw ingredient suppliers, specifically targeting leaf greens and proteins.
+* **Triage the Backlog:** Route the **49 open Critical/High cases** to the front of the queue, starting with the **Vegan Wrap** (10) and **Hummus Pack** (6), which lead that list. The remaining open cases can follow standard SLAs.
+* **Tighten In-Plant Quality Control:** Foreign objects are the highest-volume complaint type (**40**), and **19** of them are metal fragments in sandwiches. QC inspection is the most common root cause, followed by equipment failure. Prioritise metal detection, equipment maintenance and hygiene checks on production lines.
+* **Fix Seals, Cold Chain and Shelf Life Together:** Seal failures appear in **19** complaints across **10 different products**, so this is a plant-wide packaging issue, not just the wrap and sandwich lines. Spoilage has three similar drivers: shelf life set too long (9 of 24), transit temperature deviation (8) and improper sealing (7). Review shelf-life limits and cold-chain handling alongside seal integrity.
+* **Strengthen Allergen & Labelling Controls:** Allergic reactions have the lowest-scoring satisfaction profile among safety issues (2.00). Complaints involve undeclared nuts and dairy in products labelled vegan. Audit allergen cross-contamination, labelling accuracy and ingredient-supplier communication.
+* **Initiate Targeted Supplier Audits:** Mould complaints cite contaminated raw ingredients (**12 of 32**), and slimy or moldy salad leaves appear in **23** complaint descriptions. Prioritise on-site checks for leafy-green suppliers.
