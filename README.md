@@ -3,7 +3,6 @@
 ## 🚀 Overview
 This project turns raw customer complaint logs from Excel/CSV into a single-page, interactive Power BI business intelligence dashboard for a fresh-food business (salads, wraps, sandwiches and ready-to-eat packs). It is built to answer one question: **where is food quality failing, how badly does it hurt customer satisfaction, and what should be fixed first?**
 
-![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
 ---
 
 ## 📋 Project Background
@@ -17,8 +16,23 @@ By building a centralized semantic model and interactive dashboard, this project
 5. **What underlying keywords and sentiment shifts** are driven by consumer remarks?
 
 ---
+![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
+
+## 🧩 Dashboard Components
+
+| Visual | Purpose |
+| :--- | :--- |
+| **Slicers** | Filter the whole page by date, product, investigation status, severity and sentiment |
+| **KPI Cards** | Monitor complaint volume, open cases, average satisfaction, resolution time and shelf life (optionally swap shelf life for % Dissatisfied) |
+| **Product by Satisfaction** | Show complaint volume per product (bar length) and how customers rated the outcome (colour), in one stacked bar chart |
+| **Complaint Type by Satisfaction** | Compare the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
+| **Severity Analysis** | Understand the distribution of complaint severity (Critical, High, Medium, Low) |
+| **Sentiment Donut Chart** | Show the share of positive, neutral and negative sentiment in complaint descriptions, using the same colours as the satisfaction scale |
+| **Word Cloud** | Identify recurring complaint keywords and phrases, such as seal failure and early spoilage |
+| **Complaint Detail Table** | Review open and in-progress complaints |
 
 
+---
 ## 🛠️ Tools & Tech Stack
 
 * **Excel:** The source data container storing raw complaint entries, dates, remarks, and satisfaction ratings.
