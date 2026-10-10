@@ -1,6 +1,6 @@
 # 📊 Customer Complaints Data Analysis Dashboard
 
-## 🚀 Introduction
+## 🚀 Overview
 This project turns raw customer complaint logs from Excel/CSV into a single-page, interactive Power BI business intelligence dashboard for a fresh-food business (salads, wraps, sandwiches and ready-to-eat packs). It is built to answer one question: **where is food quality failing, how badly does it hurt customer satisfaction, and what should be fixed first?**
 
 ![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
