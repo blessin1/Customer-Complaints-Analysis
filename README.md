@@ -22,14 +22,14 @@ By building a centralized semantic model and interactive dashboard, this project
 
 | Visual | Purpose |
 | :--- | :--- |
-| **Slicers** | Filter the whole page by date, product, investigation status, severity and sentiment |
-| **KPI Cards** | Monitor complaint volume, open cases, average satisfaction, resolution time and shelf life (optionally swap shelf life for % Dissatisfied) |
-| **Product by Satisfaction** | Show complaint volume per product (bar length) and how customers rated the outcome (colour), in one stacked bar chart |
-| **Complaint Type by Satisfaction** | Compare the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
-| **Severity Analysis** | Understand the distribution of complaint severity (Critical, High, Medium, Low) |
-| **Sentiment Donut Chart** | Show the share of positive, neutral and negative sentiment in complaint descriptions, using the same colours as the satisfaction scale |
-| **Word Cloud** | Identify recurring complaint keywords and phrases, such as seal failure and early spoilage |
-| **Complaint Detail Table** | Review open and in-progress complaints |
+| **Slicers** | Filters the whole page by date, product, investigation status, severity and sentiment |
+| **KPI Cards** | Monitors complaint volume, open cases, average satisfaction, resolution time and % Dissatisfied |
+| **Product by Satisfaction** | Shows complaint volume per product and how customers rated the outcome (colour), sorted by complaint volume from highest to lowest |
+| **Complaint Type by Satisfaction** | Compares the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
+| **Severity Analysis** | Displays the distribution of complaint severity (Critical, High, Medium, Low) |
+| **Sentiment Donut Chart** | Shows the share of positive, neutral and negative sentiment in complaint descriptions, using the same colours as the satisfaction scale |
+| **Word Cloud** | Highlights recurring complaint keywords and phrases, such as seal failure and early spoilage |
+| **Complaint Detail Table** | Lists open and in-progress complaints for review |
 
 
 ---
