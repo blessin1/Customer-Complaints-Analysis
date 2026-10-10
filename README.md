@@ -22,7 +22,7 @@ By building a centralized semantic model and interactive dashboard, this project
 
 | Visual | Purpose |
 | :--- | :--- |
-| **Slicers** | Filters the whole page by date, product, investigation status, severity and sentiment |
+| **Slicers** | Filters the whole page by date, product, investigation status, packaging type, severity and sentiment |
 | **KPI Cards** | Monitors complaint volume, open cases, average satisfaction, resolution time and % Dissatisfied |
 | **Product by Satisfaction** | Shows complaint volume per product and how customers rated the outcome (colour), sorted by complaint volume from highest to lowest |
 | **Complaint Type by Satisfaction** | Compares the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
