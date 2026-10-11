@@ -71,7 +71,7 @@ To achieve accurate calendar drill-downs and custom sorting behaviors, the follo
   )
   ```
 
-* **Satisfaction Sort Order (`SatisfactionSortOrder`):** Gives each satisfaction rating a number from 1 to 5, so charts show them in order from Very Satisfied to Very Dissatisfied, instead of Power BI’s default alphabetical order (Dissatisfied, Neutral, Satisfied...)..
+* **Satisfaction Sort Order (`SatisfactionSortOrder`):** Gives each satisfaction rating a number from 1 to 5, so charts show them in order from Very Satisfied to Very Dissatisfied, instead of Power BI’s default alphabetical order (Dissatisfied, Neutral, Satisfied...).
   ```dax
   SatisfactionSortOrder = 
   DATATABLE(
