@@ -50,9 +50,9 @@ To maximize performance and query efficiency, I transformed the flat Excel table
 ![Optimized Star Schema Model](assets/data_model_screenshot.PNG)
 
 ### Schema Relationships
-* `Complaints` (Fact Table) ─── `1:*` ─── `DateTable` (Dimension Table)
-* `Complaints` (Fact Table) ─── `1:*` ─── `SatisfactionSortOrder` (Dimension Table)
-
+* `DateTable` (Dimension Table) ─── `1:*` ─── `Complaints` (Fact Table) 
+* `SatisfactionSortOrder` (Dimension Table) ─── `1:*` ─── `Complaints` (Fact Table)
+  
 ### Custom Structural Tables
 To achieve accurate calendar drill-downs and custom sorting behaviors, the following DAX calculated tables were implemented:
 
@@ -71,7 +71,7 @@ To achieve accurate calendar drill-downs and custom sorting behaviors, the follo
   )
   ```
 
-* **Satisfaction Sort Order (`SatisfactionSortOrder`):** Fixes the default alphabetical sorting flaw in native charts by mapping strings to explicit indexes.
+* **Satisfaction Sort Order (`SatisfactionSortOrder`):** Gives each satisfaction rating a number from 1 to 5, so charts show them in order from Very Satisfied to Very Dissatisfied, instead of Power BI’s default alphabetical order (Dissatisfied, Neutral, Satisfied...)..
   ```dax
   SatisfactionSortOrder = 
   DATATABLE(
