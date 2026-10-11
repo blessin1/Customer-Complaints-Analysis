@@ -50,8 +50,8 @@ To maximize performance and query efficiency, I transformed the flat Excel table
 ![Optimized Star Schema Model](assets/data_model_screenshot.PNG)
 
 ### Schema Relationships
-* `DateTable` (Dimension Table) ─── `1:*` ─── `Complaints` (Fact Table) 
-* `SatisfactionSortOrder` (Dimension Table) ─── `1:*` ─── `Complaints` (Fact Table)
+* `DateTable` (Dimension Table) ─── `1:*` (one-to-many) ─── `Complaints` (Fact Table) 
+* `SatisfactionSortOrder` (Dimension Table) ─── `1:*` (one-to-many) ─── `Complaints` (Fact Table)
   
 ### Custom Structural Tables
 To achieve accurate calendar drill-downs and custom sorting behaviors, the following DAX calculated tables were implemented:
