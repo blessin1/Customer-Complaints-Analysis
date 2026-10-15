@@ -1,11 +1,11 @@
 # 📊 Customer Complaints Data Analysis Dashboard
 
-## 🚀 Overview
+## Overview
 This project turns raw customer complaint logs from Excel/CSV into a single-page, interactive Power BI business intelligence dashboard for a fresh-food business (salads, wraps, sandwiches and ready-to-eat packs). It is built to answer one question: **where is food quality failing, how badly does it hurt customer satisfaction, and what should be fixed first?**
 
 ---
 
-## 📋 Project Background
+## Project Background
 For a fresh-food producer, quick resolution times and quality control are critical. This dashboard was developed to solve a core business problem: **How do we efficiently track, triage, and solve growing customer issues?**
 
 By building a centralized semantic model and interactive dashboard, this project answers five critical business questions:
@@ -18,7 +18,7 @@ By building a centralized semantic model and interactive dashboard, this project
 ---
 ![Customer Complaints Dashboard Canvas](assets/dashboard_screenshot.PNG)
 
-## 🧩 Dashboard Components
+## Dashboard Components
 
 | Visual | Purpose |
 | :--- | :--- |
@@ -27,7 +27,7 @@ By building a centralized semantic model and interactive dashboard, this project
 | **Product by Satisfaction** | Shows complaint volume per product and how customers rated the outcome (colour), sorted by complaint volume from highest to lowest |
 | **Complaint Type by Satisfaction** | Compares the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
 | **Severity Analysis** | Displays the distribution of complaint severity (Critical, High, Medium, Low) |
-| **Sentiment Donut Chart** | Shows the share of positive, neutral and negative sentiment in complaint descriptions, using the same colours as the satisfaction scale |
+| **Investigation Status by Severity** | Shows where Critical and High cases sit across Open, In Progress, Resolved and Closed |
 | **Word Cloud** | Highlights recurring complaint keywords and phrases, such as seal failure and early spoilage |
 | **Complaint Detail Table** | Lists open and in-progress complaints for review |
 
@@ -43,7 +43,7 @@ By building a centralized semantic model and interactive dashboard, this project
 
 ---
 
-## 🗂️ Data Architecture & Modeling
+## Data Architecture & Modeling
 To maximize performance and query efficiency, I transformed the flat Excel table into an optimized **Star Schema** data model. 
 
 ### Data Model Layout
@@ -89,10 +89,10 @@ To achieve accurate calendar drill-downs and custom sorting behaviors, the follo
 
 ---
 
-## 📐 DAX Measures Reference
-All business logic functions are neatly contained within a dedicated **`Measure Table`** for clean organization.
+## DAX Measures Reference
+All business logic metrics are neatly contained within a dedicated **`Measure Table`** for clean organization.
 
-| Measure Name | DAX Code / Expression | Description |
+| Metrics (Measure) Name | DAX Code / Expression | Description |
 | :--- | :--- | :--- |
 | **Total Complaints** | `COUNTROWS('Complaints')` | Calculates absolute volume of consumer issues logged. |
 | **Open Complaints** | `CALCULATE(COUNTROWS('Complaints'), 'Complaints'[Investigation Status] = "Open")` | Tracks active, unresolved tickets requiring immediate attention. |
@@ -105,7 +105,7 @@ All business logic functions are neatly contained within a dedicated **`Measure 
 | **Severity** | `SELECTEDVALUE(Complaints[Severity Level])` | Dynamically captures and returns the current user-selected context for filter flags. |
 
 ---
-## 🧠 Text Analytics
+## Text Analytics
 
 A key part of this project was combining **structured complaint information with unstructured customer feedback**.
 
@@ -132,7 +132,7 @@ This provides an additional layer of analysis beyond simply counting complaints.
 ---
 
 ### 📊 Executive Summary KPI Overview
-* **Total Intake Volume:** **300** customer complaints logged across the operational window.
+* **Total Intake Volume:** **300** customer complaints logged across the operational window. Of the 300 complaints, **143 (48%)** are completed (73 Resolved, 70 Closed) and **157 (52%)** are unresolved (86 Open, 71 In Progress). Open and In Progress cases are equally stale, at an average of **42.8** and **42.7** days old.
 * **Active Operational Backlog:** **86** complaints (**29%**) currently hold an `Open` status. **49** of these are **Critical or High** severity, including **18 Critical**, so they need immediate attention.
 * **Turnaround Efficiency:** The organization maintains a baseline average of **8 days** to resolve a ticket.
 * **Customer Satisfaction:** The average rating is **2.58 / 5**, and **53%** of customers (**158**) are Dissatisfied or Very Dissatisfied.
@@ -148,6 +148,10 @@ This provides an additional layer of analysis beyond simply counting complaints.
 | **Severity&nbsp;Split** | **High** **35%** (**104**); **Critical** **19%** (**56**). | Critical and High are **53%** of all complaints, and **57%** of the open backlog (49 of 86). |
 | **Text&nbsp;Mining** | **Negative sentiment** leads at **48%** (**143** records). | Seal and freshness themes recur (`"vacuum seal"`, `"seal failure"`, `"early spoilage"`). |
 | **Risk&nbsp;Anchors** | **Spoiled** (1.79), **Foreign Object** (1.90), **Moldy** (1.94) and **Allergic Reaction** (2.00) generate the lowest ratings. |  Food-safety and regulatory exposure. Foreign objects trace mainly to **QC inspection** (18 of 40) and **equipment failure** (12). Allergens trace to **cross-contamination** (8 of 21) and **supplier miscommunication** (8). |
+| **Backlog&nbsp;Ageing** | **157** unresolved cases average **43 days** open, against **8.1 days** to resolve. | **124** (79%) are older than 15 days, the longest any complaint has taken to resolve. |
+| **Root&nbsp;Causes** | **QC & production** (34%) and **storage & shelf life** (28%) lead the five themes. | No single root cause exceeds 6%, so fixes must target themes, not one-offs. |
+| **Compensation** | **40%** of resolved and closed cases received a full refund or replacement. | Critical and High satisfaction stays near 2 / 5 whatever the compensation. |
+
 
 ---
 ### Satisfaction depends on what went wrong, not which product
@@ -167,8 +171,17 @@ Severity tells the same story. Critical and High complaints average **1.89** and
 
 ---
 
-## 💡 Key Conclusions & Action Items
-* **Triage the Backlog:** Route the **49 open Critical/High cases** to the front of the queue, starting with the **Vegan Wrap** (10) and **Hummus Pack** (6), which lead that list. The remaining open cases can follow standard SLAs.
+
+### Compensation and resolution
+
+* **Compensation does not win back customers after serious failures.** **57 of 143** completed cases (40%) received a full refund or replacement, yet satisfaction stayed near 2 / 5. Preventing the failure matters more than compensating for it.
+* **"No action taken" covers 52 complaints (17%), all Low or Medium severity,** and scores as well as an apology, so minor issues do not appear to need compensation.
+
+
+---
+
+## Key Conclusions & Action Items
+* **Clear the Backlog by Severity:** There are **84 unresolved Critical/High cases** (Open + In Progress), and **64** are older than 15 days. Start with the **49 still `Open`** (18 Critical), where the **Vegan Wrap** (10) and **Hummus Pack** (6) lead the list.
 * **Tighten In-Plant Quality Control:** Foreign objects are the highest-volume complaint type (**40**), and **19** of them are metal fragments in sandwiches. QC inspection is the most common root cause, followed by equipment failure. Prioritise metal detection, equipment maintenance and hygiene checks on production lines.
 * **Fix Seals, Cold Chain and Shelf Life Together:** Seal failures appear in **19** complaints across **10 different products**, so this is a plant-wide packaging issue, not just the wrap and sandwich lines. Spoilage has three similar drivers: shelf life set too long (9 of 24), transit temperature deviation (8) and improper sealing (7). Review shelf-life limits and cold-chain handling alongside seal integrity.
 * **Strengthen Allergen & Labelling Controls:** Allergic reactions have the lowest-scoring satisfaction profile among safety issues (2.00). Complaints involve undeclared nuts and dairy in products labelled vegan. Audit allergen cross-contamination, labelling accuracy and ingredient-supplier communication.
