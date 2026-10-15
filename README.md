@@ -27,7 +27,7 @@ By building a centralized semantic model and interactive dashboard, this project
 | **Product by Satisfaction** | Shows complaint volume per product and how customers rated the outcome (colour), sorted by complaint volume from highest to lowest |
 | **Complaint Type by Satisfaction** | Compares the satisfaction mix across complaint types (100% stacked) to find the types that hurt customers most, such as spoilage, foreign objects, mould and allergens |
 | **Severity Analysis** | Displays the distribution of complaint severity (Critical, High, Medium, Low) |
-| **Investigation Status by Severity** | Shows where Critical and High cases sit across Open, In Progress, Resolved and Closed |
+| **Investigation Status Donut Chart** | Shows the share of open, in-progress, closed and resolved complaints |
 | **Word Cloud** | Highlights recurring complaint keywords and phrases, such as seal failure and early spoilage |
 | **Complaint Detail Table** | Lists open and in-progress complaints for review |
 
