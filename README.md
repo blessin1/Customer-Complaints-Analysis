@@ -150,7 +150,7 @@ This provides an additional layer of analysis beyond simply counting complaints.
 | **Risk&nbsp;Anchors** | **Spoiled** (1.79), **Foreign Object** (1.90), **Moldy** (1.94) and **Allergic Reaction** (2.00) generate the lowest ratings. |  Food-safety and regulatory exposure. Foreign objects trace mainly to **QC inspection** (18 of 40) and **equipment failure** (12). Allergens trace to **cross-contamination** (8 of 21) and **supplier miscommunication** (8). |
 | **Backlog&nbsp;Ageing** | **157** unresolved cases average **43 days** open, against **8.1 days** to resolve. | **124** (79%) are older than 15 days, the longest any complaint has taken to resolve. |
 | **Root&nbsp;Causes** | **QC & production** (34%) and **storage & shelf life** (28%) lead the five themes. | No single root cause exceeds 6%, so fixes must target themes, not one-offs. |
-| **Compensation** | **40%** of resolved and closed cases received a full refund or replacement. | Critical and High satisfaction stays near 2 / 5 whatever the compensation. |
+
 
 
 ---
@@ -171,14 +171,6 @@ Severity tells the same story. Critical and High complaints average **1.89** and
 
 ---
 
-
-### Compensation and resolution
-
-* **Compensation does not win back customers after serious failures.** **57 of 143** completed cases (40%) received a full refund or replacement, yet satisfaction stayed near 2 / 5. Preventing the failure matters more than compensating for it.
-* **"No action taken" covers 52 complaints (17%), all Low or Medium severity,** and scores as well as an apology, so minor issues do not appear to need compensation.
-
-
----
 
 ## Key Conclusions & Action Items
 * **Clear the Backlog by Severity:** There are **84 unresolved Critical/High cases** (Open + In Progress), and **64** are older than 15 days. Start with the **49 still `Open`** (18 Critical), where the **Vegan Wrap** (10) and **Hummus Pack** (6) lead the list.
